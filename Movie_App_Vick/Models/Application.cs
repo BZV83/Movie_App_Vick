@@ -17,8 +17,8 @@ namespace Movie_App_Vick.Models
         public string Director {  get; set; }
         [Required]
         public string Rating { get; set; }
-        public bool Edited { get; set; }
-        public string LentTo { get; set; }
-        public string Notes { get; set; }
+        public bool Edited { get; set; } //not required
+        public string LentTo { get; set; } //not required
+        public string Notes { get; set; } //not required
     }
 }

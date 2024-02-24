@@ -6,5 +6,5 @@
 
 @model Application
 
-<h2>Thanks for adding @Model.Title to my movie collection!</h2>
-<a asp-controller="Home" asp-action="Index">Back to home page</a>
+<h2>@Model.Title has been added to your movie collection.</h2>
+<a asp-controller="Home" asp-action="MovieList">Back to movie collection</a>

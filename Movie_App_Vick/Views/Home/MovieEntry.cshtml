@@ -3,14 +3,21 @@
 <h2>Movie Entries</h2>
 
 <form method="post">
-    <label asp-for="Category">Category:</label>
-    <input asp-for="Category" type="text" maxlength="25" required/>
-    <br /><br />
+    <input type="hidden" asp-for="MovieId" />
+
     <label asp-for="Title">Title:</label>
     <input asp-for="Title" type="text" maxlength="25" required/>
     <br /><br />
     <label asp-for="Year">Year:</label>
     <input asp-for="Year" type="number" min="0" max="9999" maxlength="4" required/>
+    <br /><br />
+    <select asp-for="CategoryId">
+        <option value="">Select a movie category</option>
+        @foreach (Category c in ViewBag.Categories)
+        {
+            <option value="@c.CategoryId">@c.CategoryName</option>
+        }
+    </select>
     <br /><br />
     <label asp-for="Director">Director:</label>
     <input asp-for="Director" type="text" maxlength="25" required />
@@ -33,6 +40,13 @@
     <br /><br />
     <label asp-for="LentTo">Lent To:</label>
     <input asp-for="LentTo" type="text" maxlength="25" />
+    <br /><br />
+    <label asp-for="CopiedToPlex">Copied To Plex:</label>
+    <select asp-for="CopiedToPlex">
+        <option value="" disabled selected style="display:none;">Select One</option>
+        <option value="true">Yes</option>
+        <option value="false">No</option>
+    </select>
     <br /><br />
     <label asp-for="Notes">Notes:</label>
     <input asp-for="Notes" type="text" />

@@ -35,7 +35,7 @@ namespace Movie_App_Vick.Controllers
         [HttpPost]
         public IActionResult MovieEntry(Application response) //post form action
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid) // validation
             {
                 _context.Movies.Add(response);
                 _context.SaveChanges();
@@ -50,28 +50,28 @@ namespace Movie_App_Vick.Controllers
             }
         }
 
-        public IActionResult MovieList()
+        public IActionResult MovieList() //display movie list
         {
             var applications = _context.Movies
-                .Include(x => x.Category)
+                .Include(x => x.Category) // include other tables in the context
                 .ToList();
 
             return View(applications);
         }
 
         [HttpGet]
-        public IActionResult Edit(int id)
+        public IActionResult Edit(int id) // edit functionality
         {
             var editRecord = _context.Movies
                 .Single(x => x.MovieId == id);
 
             ViewBag.Categories = _context.Categories.ToList();
 
-            return View("MovieEntry", editRecord);
+            return View("MovieEntry", editRecord); //pass in id to know which one needs editing
         }
 
         [HttpPost]
-        public IActionResult Edit(Application updates)
+        public IActionResult Edit(Application updates) // update the record
         {
             _context.Update(updates);
             _context.SaveChanges();
@@ -80,7 +80,7 @@ namespace Movie_App_Vick.Controllers
         }
 
         [HttpGet]
-        public IActionResult Delete(int id)
+        public IActionResult Delete(int id) // delete functionality with correct id
         {
             var deleteRecord = _context.Movies
                 .Single(x => x.MovieId == id);
@@ -89,7 +89,7 @@ namespace Movie_App_Vick.Controllers
         }
 
         [HttpPost]
-        public IActionResult Delete(Application deleted)
+        public IActionResult Delete(Application deleted) // delete save to database
         {
             _context.Movies.Remove(deleted);
             _context.SaveChanges();

@@ -35,10 +35,19 @@ namespace Movie_App_Vick.Controllers
         [HttpPost]
         public IActionResult MovieEntry(Application response) //post form action
         {
-            _context.Movies.Add(response);
-            _context.SaveChanges();
+            if (ModelState.IsValid)
+            {
+                _context.Movies.Add(response);
+                _context.SaveChanges();
 
-            return View("ThankYou", response);
+                return View("ThankYou", response);
+            }
+            else
+            {
+                ViewBag.Categories = _context.Categories.ToList();
+
+                return View(response);
+            }
         }
 
         public IActionResult MovieList()
